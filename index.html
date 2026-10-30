@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Skärdata">
+  <title>Skärdata</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn" id="clearBtn" aria-label="Rensa fält" title="Rensa">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <h1>Skärdata</h1>
+    <button class="icon-btn fx" id="fxBtn" aria-label="Visa formler" title="Formler"><span><i>f</i>(<i>x</i>)</span></button>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="borr">Borrning</button>
+    <button role="tab" data-tab="svarv">Svarvning</button>
+    <button role="tab" data-tab="fras">Fräsning</button>
+    <span class="tab-indicator" aria-hidden="true"></span>
+  </nav>
+
+  <main id="panel" role="tabpanel"></main>
+
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-card">
+      <h2>Formler</h2>
+      <div id="formulas"></div>
+      <button class="sheet-close" id="sheetClose">Stäng</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
