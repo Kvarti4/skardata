@@ -1,29 +1,67 @@
 # Skärdata
 
-En enkel webbapp (PWA) som räknar ut skärdata för CNC-bearbetning: **Borrning**, **Svarvning** och **Fräsning**.
-Fyll i de värden du har, så räknas de övriga ut direkt. Framräknade fält visas i blått.
+En enkel kalkylator för skärdata vid CNC-bearbetning: **borrning**, **svarvning** och **fräsning**.
+Den fungerar i mobilen som en vanlig app, även utan nätuppkoppling.
 
-| Formel | |
+**Öppna appen:** https://kvarti4.github.io/skardata/
+
+## Installera på telefonen
+
+- **iPhone:** öppna länken i **Safari**, tryck på **Dela** (fyrkanten med en pil) och välj **Lägg till på hemskärmen**.
+- **Android:** öppna länken i **Chrome**, tryck på **⋮** och välj **Installera app** (eller **Lägg till på startskärmen**).
+
+Appen får då en egen ikon och öppnas i helskärm.
+
+## Så använder du den
+
+1. Välj flik: **Borrning**, **Svarvning** eller **Fräsning**. Du byter flik genom att trycka på den eller svepa i sidled.
+2. Fyll i de värden du har. De övriga räknas ut direkt medan du skriver.
+3. Resultatet för **varvtal (n)** och **matningshastighet (Vf)** visas i de blå rutorna längst ner.
+
+Det går att räkna åt båda hållen:
+
+| Du fyller i | Appen räknar ut |
 |---|---|
-| Varvtal | `n = Vc · 1000 / (π · D)` |
-| Skärhastighet | `Vc = π · D · n / 1000` |
-| Matningshastighet (borr/svarv) | `Vf = f · n` |
-| Matningshastighet (fräs) | `Vf = fz · Z · n` |
+| Diameter + skärhastighet (Vc) | Varvtal (n) |
+| Diameter + varvtal (n) | Skärhastighet (Vc) |
+| Matning (f eller fz) + varvtal | Matningshastighet (Vf) |
+| Matningshastighet (Vf) + varvtal | Matning (f eller fz) |
 
-Värdena sparas på telefonen, och appen fungerar även utan nät när den väl är installerad.
+Fält som appen har räknat ut visas i blått.
 
-## Publicera på GitHub Pages
+### Exempel – borrning
+Ett borr på Ø10 mm med Vc 50 m/min och f 0,12 mm/varv ger **n ≈ 1592 varv/min** och **Vf ≈ 191 mm/min**.
 
-1. Logga in på [github.com](https://github.com) och skapa ett nytt **publikt** repo, till exempel `skardata`.
-2. Klicka på **Add file → Upload files** och dra in alla filer och mappen `icons` från den här mappen. Klicka sedan på **Commit changes**.
-3. Gå till **Settings → Pages**, välj **Branch: `main`** och mappen **`/ (root)`** och klicka på **Save**.
-4. Efter någon minut ligger appen på `https://<ditt-användarnamn>.github.io/skardata/`.
+### Exempel – fräsning
+En fräs på Ø10 mm med 4 skär, Vc 200 m/min och fz 0,05 mm/tand ger **n ≈ 6366 varv/min** och **Vf ≈ 1273 mm/min**.
 
-## Spara som app på telefonen
+### Bra att veta
+- Du kan använda både komma och punkt som decimaltecken.
+- **f(x)** uppe till höger visar formlerna för den flik du står på.
+- **Papperskorgen** uppe till vänster tömmer fälten på den flik du står på.
+- Appen kommer ihåg dina senaste värden till nästa gång du öppnar den.
 
-- **iPhone (Safari):** öppna adressen, tryck på **Dela** och välj **Lägg till på hemskärmen**.
-- **Android (Chrome):** öppna adressen, tryck på **⋮** och välj **Installera app** (eller **Lägg till på startskärmen**).
+## Formler
 
-## Uppdatera appen
+| Storhet | Formel | Enhet |
+|---|---|---|
+| Varvtal | `n = Vc · 1000 / (π · D)` | varv/min |
+| Skärhastighet | `Vc = π · D · n / 1000` | m/min |
+| Matningshastighet (borrning/svarvning) | `Vf = f · n` | mm/min |
+| Matningshastighet (fräsning) | `Vf = fz · Z · n` | mm/min |
 
-Ladda upp de ändrade filerna till repot. Nästa gång appen öppnas med nätuppkoppling hämtar telefonen den nya versionen.
+D = diameter (mm), f = matning per varv (mm/varv), fz = matning per tand (mm/tand), Z = antal skär.
+
+> Värdena är teoretiska riktvärden. Kontrollera alltid verktygstillverkarens rekommendationer och maskinens begränsningar.
+
+---
+
+## För utvecklare
+
+Appen är en statisk webbapp (HTML, CSS och JavaScript) utan byggsteg och publiceras med GitHub Pages från grenen `main`.
+
+- `index.html`, `style.css` och `app.js` är själva appen.
+- `manifest.webmanifest` och `sw.js` gör att den kan installeras och fungerar offline.
+- `icons/` innehåller appikonerna.
+
+När ändringar pushas till `main` uppdateras sidan inom någon minut. Telefonerna hämtar den nya versionen nästa gång appen öppnas med nätuppkoppling.
