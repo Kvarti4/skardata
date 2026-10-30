@@ -22,6 +22,9 @@ const FORMULAS = {
   fras:  ['n = Vc · 1000 / (π · D)', 'Vc = π · D · n / 1000', 'Vf = fz · Z · n'],
 };
 
+// Fields shown as highlighted result cards
+const RESULTS = ['n', 'Vf'];
+
 const STORE_KEY = 'skardata-v1';
 const TAB_ORDER = Object.keys(TABS);
 
@@ -82,7 +85,7 @@ const indicator = document.querySelector('.tab-indicator');
 function card(key) {
   const f = FIELDS[key];
   const el = document.createElement('label');
-  el.className = 'card';
+  el.className = RESULTS.includes(key) ? 'card result' : 'card';
   el.dataset.key = key;
   el.innerHTML = `
     <div class="label">${f.label} [<b>${f.sym}</b>]</div>

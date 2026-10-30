@@ -103,6 +103,22 @@ main > *, .row > * { min-width: 0; }
 .card.calc { background: linear-gradient(180deg, #172131, #131a25); }
 .card.calc .value { color: #8fbaf0; }
 
+/* Result cards (n, Vf): metallic blue */
+.card.result {
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, #2b6cc4 0%, #1e5aa8 45%, #163f78 100%);
+  box-shadow: 0 4px 18px rgba(43,108,196,.25), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.card.result::before {
+  background: linear-gradient(160deg, #e6ebf2, #7fb0ec 40%, #2b6cc4 70%, #c9ced6);
+  opacity: .8;
+}
+.card.result .label, .card.result .unit { color: #dbe7f7; }
+.card.result .label b { color: #fff; }
+.card.result .value, .card.result.calc .value { color: #fff; font-weight: 500; }
+.card.result .value::placeholder { color: rgba(255,255,255,.4); }
+
 .label { font-size: 1rem; color: var(--muted); }
 .label b { color: var(--silver-1); font-weight: 500; }
 .line { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
